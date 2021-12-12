@@ -20,7 +20,7 @@ export default class RecordEditFormSlds extends LightningElement {
         fields.splice(0,1);
         let successFields = {
             'Id': event.detail.id,
-            'Name': valuesAfterSuccess.FirstName.value+''+valuesAfterSuccess.LastName.value
+            'Name': valuesAfterSuccess.FirstName.value+' '+valuesAfterSuccess.LastName.value
         };
         fields.forEach(element => {
             let details = valuesAfterSuccess[element];
