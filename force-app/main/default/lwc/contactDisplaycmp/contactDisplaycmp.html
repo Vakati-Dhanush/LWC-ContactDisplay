@@ -1,0 +1,33 @@
+<template>
+    <template if:true={showRecords}>
+        <lightning-card>
+            <lightning-input type="text" label="Search for Record " placeholder="type the record name"
+                onchange={searchChange} padding="around-medium"></lightning-input>
+        </lightning-card>
+        <lightning-layout>
+            <div class="slds-grid slds-wrap slds-gutters ">
+                <template for:each={displayRecords} for:item="contact">
+                    <div key={contact.Id} id={contact.Id} onclick={recordEdit}
+                        class="slds-col slds-var-p-around_medium  slds-col slds-size_1-of-4">
+                        <lightning-card key={contact.Id} padding="around-medium" icon-name="standard:contact"
+                            title={contact.Name}>
+                            <div class="recordDetails" >
+                                <p>Name : {contact.Name}</p>
+                                <p>Email : {contact.Email}</p>
+                                <p>Phone : {contact.Phone}</p>
+                            </div>
+                        </lightning-card>
+                    </div>
+                </template>
+            </div>
+        </lightning-layout>
+    </template>
+
+    <template if:true={showModal}>
+        <c-record-edit-form-slds object-api-name={objectApiName} field-names={fieldNames} record-id={recordId} 
+        onreturnvalues ={handleValueChange}>
+        </c-record-edit-form-slds>
+    </template>
+
+
+</template>
