@@ -1,0 +1,20 @@
+<template>
+
+    <div>
+        <template if:true={isDataAvailable}>
+            <div class=' slds-var-p-around_small tableStyle slds-col slds-cell-wrap slds-table_col-bordered' style ="height: 350px">
+                <lightning-datatable  key-field="Id" data={displayTransactions} columns={columns} min-column-width=50
+                    max-column-width=180 hide-checkbox-column="true" max-width='62%' resize-column-disabled
+                    enable-infinite-loading="true" >
+                </lightning-datatable>
+            </div>
+        </template>
+        <template if:false={isDataAvailable}>
+            <p class = "messageClass"> {message}</p>
+        </template>
+
+
+    </div>
+
+
+</template>

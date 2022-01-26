@@ -1,0 +1,18 @@
+<template>
+
+    <div>
+        {accountId}
+        <lightning-card title="Contact Create Form ">
+            <lightning-record-edit-form object-api-name={objectApiName}>
+                <template for:each={fields} for:item="field" class= "slds-p-around_xxx-small">
+                    <lightning-input-field key={field} field-name={field}> </lightning-input-field>
+                </template>
+                <lightning-input-field field-name="AccountId" value = {accountId}> </lightning-input-field>
+                <lightning-button variant="brand" type="submit" label="Save" onclick={saveRecord}
+                    class='slds-var-p-around_medium'>
+                </lightning-button>
+            </lightning-record-edit-form>
+        </lightning-card>
+    </div>
+
+</template>

@@ -1,0 +1,17 @@
+.menuBar{
+    display: flex;
+    width : 30%;
+    height : 30%;
+    padding : 5px ;
+    border-right-style:solid ;
+}
+hr{
+  margin: 0;
+}
+  .menuItems{
+    font-style: italic;
+    font-size: medium;
+}
+li{
+  cursor: pointer;
+}

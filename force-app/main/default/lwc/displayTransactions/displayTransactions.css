@@ -1,0 +1,14 @@
+.tableStyle{
+  max-width: max-content;
+  padding-left: 20px;
+  padding-top :0px;
+}
+
+.messageClass {
+  display: flex;
+  align-content: center;
+  font-size: large;
+  font-weight: 600;
+  padding : 15px;
+}
+

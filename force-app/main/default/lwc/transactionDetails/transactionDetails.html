@@ -1,0 +1,45 @@
+<template>
+    <lightning-card title="Transaction History" style= "height: 450px;">
+        <div class="slds-grid ">
+
+            <div class="menuBar">
+                <ol>
+                    <div onclick={displayRecentTransactions} class="menuItems">
+                        <li>Recent</li>
+                    </div>
+                    <hr>
+                    <div onclick={displayALLTransactions} class="menuItems">
+                        <li>Display ALL</li>
+                    </div>
+                    <hr>
+                    <div onclick={displayTransactionByDate} class="menuItems">
+                        <li>Search on date </li>
+                    </div>
+                    <hr>
+                    <div onclick={displayTransactionBTWDates} class="menuItems">
+                        <li>Search between dates</li>
+                    </div>
+                </ol>
+            </div>
+            <div>
+                <template if:true={showInputDate}>
+                    <div >
+                        <lightning-input class="slds-p-around_x-small" type=date label="Enter Date of search"></lightning-input>
+                        <lightning-button class = "slds-p-around_x-small" label ="Search" type="brand"  onclick ={getInputDate}></lightning-button>
+                    </div>
+                </template>
+
+                <template if:true={showSearchBTWDate}>
+                    <div class= "slds-grid">
+                        <lightning-input class="slds-p-around_x-small" type=date label="Enter Start Date"></lightning-input>
+                        <lightning-input class="slds-p-around_x-small" type=date label="End Date"></lightning-input>
+                    </div>
+                    <lightning-button class="slds-p-around_x-small" label ="Search" type="brand"  onclick ={getInputDateRange}></lightning-button>
+                </template>
+                <div style= "height : 450px">
+                    <c-display-transactions contact-id={recordId}></c-display-transactions>
+                </div>
+            </div>
+        </div>
+    </lightning-card>
+</template>
