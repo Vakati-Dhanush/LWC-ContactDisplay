@@ -1,0 +1,19 @@
+<template>
+    <div class="queueBodyConfig">
+        <lightning-card title="Queue Config" class="cardSizing">
+            <div class="slds-var-p-around_medium searchSizing">
+                <template if:true={dataReceivedFlag}>
+                    <c-global-search-component options={queueOptions} place-holder-value='Search for Queue'
+                        label='Queue Search' no-item-found-message='No related Queue found '
+                        onvaluesreturned={returnValueSearch}></c-global-search-component>
+                </template>
+            </div>
+
+
+            <div class="queueMembersStyle slds-var-p-around_medium">
+
+                <c-queue-members-config listbox-options = {userOptions} onoptionsupdate ={handleOptionsUpdate}></c-queue-members-config>
+            </div>
+        </lightning-card>
+    </div>
+</template>
