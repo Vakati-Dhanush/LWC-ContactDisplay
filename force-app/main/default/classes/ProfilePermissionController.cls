@@ -10,7 +10,7 @@ public with sharing class ProfilePermissionController {
         wrapClass.profileList = [SELECT Id,Name FROM Profile];
         wrapClass.permissionList = [SELECT Id,Label  FROM PermissionSet Where NOT(Label  like '00e%')];
         wrapClass.permissionGroupList = [Select Id ,MasterLabel FROM PermissionSetGroup];
-        wrapClass.profilePermissionList = [SELECT PV_ProfileId__c, PV_PermissionSetIds__c, PV_PermissionSetGroupIds__c FROM PV_ProfilePermission__c];
+        wrapClass.profilePermissionList = [SELECT PV_ProfileId__c,PV_RoleId__c, PV_PermissionSetIds__c, PV_PermissionSetGroupIds__c FROM PV_ProfilePermission__c];
         wrapClass.rolesList = [SELECT Id, Name FROM UserRole ];
         
         return wrapClass;
@@ -32,7 +32,8 @@ public with sharing class ProfilePermissionController {
         ProfilePermissionDataParser configurationData = (ProfilePermissionDataParser) JSON.deserialize(dataReceived, ProfilePermissionDataParser.class);    
         System.debug(configurationData);
         
-        List<PV_ProfilePermission__c> currProfilePermission = [SELECT PV_Profile__c,PV_PermissionSets__c,PV_PermissionSetGroups__c, PV_ProfileId__c, PV_PermissionSetIds__c, PV_PermissionSetGroupIds__c FROM PV_ProfilePermission__c WHERE PV_ProfileId__c = : configurationData.profileId LIMIT 1] ;
+        List<PV_ProfilePermission__c> currProfilePermission = [SELECT PV_Profile__c,PV_PermissionSets__c,PV_PermissionSetGroups__c, PV_ProfileId__c, PV_PermissionSetIds__c, PV_PermissionSetGroupIds__c FROM PV_ProfilePermission__c 
+                                                               WHERE PV_ProfileId__c = :configurationData.profileId AND PV_RoleId__c = :configurationData.roleId  LIMIT 1] ;
         
         List<PV_ProfilePermission__c> upsertPermissionConfigs = new List<PV_ProfilePermission__c>();
         
@@ -41,6 +42,8 @@ public with sharing class ProfilePermissionController {
             PV_ProfilePermission__c newConfig = new PV_ProfilePermission__c();
             newConfig.PV_Profile__c = configurationData.profileName;
             newConfig.PV_ProfileId__c = configurationData.profileId;
+            newConfig.PV_Role__c = configurationData.roleName;
+            newConfig.PV_RoleId__c = configurationData.roleId;
             newConfig.PV_PermissionSets__c = String.join(configurationData.permissionSetNames, ',');
             newConfig.PV_PermissionSetIds__c = String.join(configurationData.permissionSetIds, ',');
             newConfig.PV_PermissionSetGroups__c = String.join(configurationData.permissionSetGRPNames, ',');
@@ -80,16 +83,16 @@ public with sharing class ProfilePermissionController {
                 
                 if(!currPermissionSetGRPIds.isEmpty() || !currPermissionSetGRPNames.isEmpty())
                 {
-                     updatedNames = updatesItemsToList(currPermissionSetNames ,configurationData.permissionSetGRPNames);
-                     updatedIds = updatesItemsToList(currPermissionSetIds ,configurationData.permissionSetGRPIds);
+                     updatedNames = updatesItemsToList(currPermissionSetGRPNames ,configurationData.permissionSetGRPNames);
+                     updatedIds = updatesItemsToList(currPermissionSetGRPIds ,configurationData.permissionSetGRPIds);
                 }
                 else{
                     updatedNames = configurationData.permissionSetGRPNames;
                     updatedIds = configurationData.permissionSetGRPIds;
                 }
 
-                currProfilePermission[0].PV_PermissionSets__c = String.join(updatedNames, ',');
-                currProfilePermission[0].PV_PermissionSetIds__c=String.join(updatedIds, ',');
+                currProfilePermission[0].PV_PermissionSetGroups__c = String.join(updatedNames, ',');
+                currProfilePermission[0].PV_PermissionSetGroupIds__c=String.join(updatedIds, ',');
             }
             
             upsertPermissionConfigs.add(currProfilePermission[0]);
