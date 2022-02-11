@@ -1,20 +1,22 @@
 <template>
+
     <lightning-card>
-        <div  class="slds-grid slds-gutters slds-wrap slds-var-p-around_medium">
-            <div class='searchBox slds-col slds-size_1-of-2'>
+        <div class="slds-grid slds-gutters slds-wrap slds-var-p-around_medium">
+            <div class='slds-col slds-size_1-of-2'>
                 <template if:true={displaySearch}>
                     <c-global-search-component options={profileOptions} place-holder-value="Search for Profile"
                         label="Profile Search" no-item-found-message="No Profile Found"
                         onvaluesreturned={onProfileSelection}></c-global-search-component>
                 </template>
-            </div> 
+            </div>
             <div class="slds-col slds-size_1-of-2">
-                <c-global-search-component options={profileOptions} place-holder-value="Search for Roles"
-                        label="Role Search" no-item-found-message="No Profile Found"
-                        ></c-global-search-component>
+                <template if:true={displaySearch}>
+                    <c-global-search-component options={profileOptions} place-holder-value="Search for Roles"
+                        label="Role Search" no-item-found-message="No Role Found"></c-global-search-component>
+                </template>
             </div>
         </div>
-        
+
 
         <div class="listboxDiv slds-grid slds-gutters slds-var-p-around_medium">
             <div class="slds-col permissionSetListbox">
