@@ -1,38 +1,44 @@
 <template>
-        <div id="listbox-id-11" class="slds-dropdown slds-dropdown_fluid slds-var-p-around_medium">
-            <ul class="slds-listbox slds-listbox_vertical" role="presentation">
-                <li>
-                    <!-- Search input box -->
-                    <lightning-input label={label} placeholder={placeHolderValue} type='text' value={selectedValue}
-                        onchange={handleKeyPress}>
-                    </lightning-input>
+    <div class="slds-form-element .slds-size_1-of-2">
+        <div class="slds-form-element__control">
 
-                </li>
-            </ul>
-            <template if:false={itemSelected}>
-                <ul class="slds-listbox slds-listbox_vertical slds-dropdown_length-5 customClass" tabindex="0"
-                    role="presentation">
-                    <div>
-                        <p> <strong> ALL Items </strong></p>
-                    </div>
+            <div id="listbox-id-11" class="slds-dropdown slds-dropdown_fluid slds-var-p-around_medium">
+                <ul class="slds-listbox slds-listbox_vertical" role="presentation">
+                    <li>
+                        <!-- Search input box -->
+                        <lightning-input label={label} placeholder={placeHolderValue} type='text' value={selectedValue}
+                            onchange={handleKeyPress}>
+                        </lightning-input>
 
-                    <template for:each={optionsToDisplay} for:item="option">
-                        <!-- li to display each option in the list -->
-                        <li key={option.value} role="presentation" class="slds-listbox__item" data-label={option.label}
-                            data-value={option.value} onclick={optionsClickHandler} title={option.label}>
-                            <div id={option.value}
-                                class="slds-media slds-listbox__option slds-listbox__option_plain slds-media_small"
-                                role="option">
-                                <span class="slds-media__figure slds-listbox__option-icon"></span>
-                                <span class="slds-truncate">
-                                    <span>{option.label}</span>
-                                </span>
-                            </div>
-                        </li>
-                        <!--/ li to display each option in the list -->
-                    </template>
-
+                    </li>
                 </ul>
-            </template>
+                <template if:false={itemSelected}>
+                    <ul class="slds-listbox slds-listbox_vertical slds-dropdown_length-5 customClass" tabindex="0"
+                        role="presentation">
+                        <div>
+                            <p> <strong> ALL Items </strong></p>
+                        </div>
+
+                        <template for:each={optionsToDisplay} for:item="option">
+                            <!-- li to display each option in the list -->
+                            <li key={option.value} role="presentation" class="slds-listbox__item"
+                                data-label={option.label} data-value={option.value} onclick={optionsClickHandler}
+                                title={option.label}>
+                                <div id={option.value}
+                                    class="slds-media slds-listbox__option slds-listbox__option_plain slds-media_small"
+                                    role="option">
+                                    <span class="slds-media__figure slds-listbox__option-icon"></span>
+                                    <span class="slds-truncate">
+                                        <span>{option.label}</span>
+                                    </span>
+                                </div>
+                            </li>
+                            <!--/ li to display each option in the list -->
+                        </template>
+
+                    </ul>
+                </template>
+            </div>
         </div>
+    </div>
 </template>

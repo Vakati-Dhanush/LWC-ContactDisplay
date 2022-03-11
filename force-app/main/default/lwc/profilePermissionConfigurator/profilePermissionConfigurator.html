@@ -1,0 +1,43 @@
+<template>
+
+    <lightning-card>
+        <div class="slds-grid slds-gutters slds-wrap slds-var-p-around_medium">
+            <div class='slds-col slds-size_1-of-2'>
+                <template if:true={displaySearch}>
+                    <c-global-search-component options={profileOptions} place-holder-value="Search for Profile"
+                        label="Profile Search" no-item-found-message="No Profile Found"
+                        onvaluesreturned={onProfileSelection}></c-global-search-component>
+                </template>
+            </div>
+            <div class="slds-col slds-size_1-of-2">
+                <template if:true={displaySearch}>
+                    <c-global-search-component options={profileOptions} place-holder-value="Search for Roles"
+                        label="Role Search" no-item-found-message="No Role Found"></c-global-search-component>
+                </template>
+            </div>
+        </div>
+
+
+        <div class="listboxDiv slds-grid slds-gutters slds-var-p-around_medium">
+            <div class="slds-col permissionSetListbox">
+                <c-global-dual-list-box-component listbox-options={permissionSetOptions} name="Permission Set Selection"
+                    label="Permission Set Selection" field-help-message="Add/Remove Permission Set for Profiles"
+                    get-updated-options-as-objects=true onoptionsupdate={hanldePermissionSetSave}>
+                </c-global-dual-list-box-component>
+            </div>
+
+            <div class="slds-col permissionSetGRPListbox">
+                <c-global-dual-list-box-component listbox-options={permissionSetGRPOptions}
+                    name="Permission Set Group Selection" label="Permission Set Group Selection"
+                    get-updated-options-as-objects=true
+                    field-help-message="Add/Remove Permission Set Groups for Profiles"
+                    onoptionsupdate={handlePermissionSetGRPSave}>
+                </c-global-dual-list-box-component>
+            </div>
+        </div>
+        <div class=" slds-align_absolute-center slds-var-p-around_medium">
+            <lightning-button class="slds-var-p-around_medium" label="Save" onclick={handleSave}></lightning-button>
+        </div>
+    </lightning-card>
+
+</template>

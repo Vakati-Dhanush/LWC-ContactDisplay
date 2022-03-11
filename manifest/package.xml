@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
 	<types>
+		<members>PV_ProfilePermission__c.PV_PermissionSetGroupIds__c</members>
+		<members>PV_ProfilePermission__c.PV_PermissionSetGroups__c</members>
+		<members>PV_ProfilePermission__c.PV_PermissionSetIds__c</members>
+		<members>PV_ProfilePermission__c.PV_PermissionSets__c</members>
+		<members>PV_ProfilePermission__c.PV_ProfileId__c</members>
+		<members>PV_ProfilePermission__c.PV_Profile__c</members>
+		<name>CustomField</name>
+	</types>
+	<types>
+		<members>PV_ProfilePermission__c</members>
+		<name>CustomObject</name>
+	</types>
+	<types>
 		<members>Bike_Card</members>
 		<name>CustomTab</name>
 	</types>

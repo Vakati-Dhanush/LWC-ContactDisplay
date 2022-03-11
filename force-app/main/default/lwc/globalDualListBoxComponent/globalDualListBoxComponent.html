@@ -1,0 +1,11 @@
+<template>
+    <div>
+        <lightning-dual-listbox name={name} label={label} source-label="Available" selected-label="Selected"
+            field-level-help={fieldHelpMessage} options={listboxOptions} value={existingOptionValues}
+            onchange={handleChange} ></lightning-dual-listbox>
+    </div>
+    <!-- <div  class = " slds-align_absolute-center slds-var-p-around_medium">
+        <lightning-button  class="slds-var-p-around_medium" label="Save" onclick={handleSave}></lightning-button>
+        <lightning-button class="slds-var-p-around_medium" label="Cancel"></lightning-button>
+    </div> -->
+</template>
