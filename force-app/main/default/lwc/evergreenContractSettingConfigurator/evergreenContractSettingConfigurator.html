@@ -1,0 +1,61 @@
+<template>
+    <template if:true={isModalOpen}>
+
+        <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true"
+            aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+            <div class="slds-modal__container">
+
+                <header class="slds-modal__header">
+                    <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse"
+                        title="Close" onclick={closeModal}>
+                        <lightning-icon icon-name="utility:close" alternative-text="close" variant="inverse"
+                            size="small"></lightning-icon>
+                        <span class="slds-assistive-text">Close</span>
+                    </button>
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">{label}</h2>
+                </header>
+                <div class="slds-modal__content slds-p-around_medium slds-is-relative" aria-label="Input area">
+
+                    <template if:true={isLoading}>
+                        <lightning-spinner alternative-text="Loading" size="medium" ></lightning-spinner>
+                    </template>
+
+                    <lightning-combobox name="ContractTypeList" label="Select Contract Type" disabled={isEdit} required
+                        placeholder="Select Contract Type" value={selectedContractKey}
+                        onchange={handleContractTypeChange} options={contractTypeOptions}> </lightning-combobox>
+
+                    <lightning-combobox name="planYearList" label="Select Plan Year" disabled={isEdit} required
+                        placeholder="Select Plan Year" value={selectedPlanYear} onchange={handlePlanYearChange}
+                        options={planYearOptions}>
+
+                    </lightning-combobox>
+                    <lightning-input label="Intial Commission Rate" name="intialCommissionRateInput" required
+                        pattern=[0-9]\d{0,9}(\.\d{1,2})?%? value={intialCommissionRateInput}
+                        onchange={handleIntialCommissionChange} message-when-pattern-mismatch={patternMismatchMessage}>
+                    </lightning-input>
+                    <lightning-input label="Renewal Commission Rate" name="renewalCommissionRateInput" required
+                        pattern=[0-9]\d{0,9}(\.\d{1,2})?%? value={renewalCommissionRateInput}
+                        onchange={handleRenewalCommissionChange} message-when-pattern-mismatch={patternMismatchMessage}>
+                    </lightning-input>
+                </div>
+
+                <footer class="slds-modal__footer">
+                    <div class="slds-align_absolute-center">
+                        <lightning-button class="slds-p-around_xx-small" variant="brand" label="Save"
+                            onclick={handleSaveCommissionRate} title="Save"></lightning-button>
+                        <template if:false={isEdit}>
+                            <!-- <lightning-button class="slds-p-around_xx-small" variant="brand" label="Save&New"
+                                title="Save&New" onclick={handleSaveNewCommissionRate}></lightning-button> -->
+                        </template>
+                        <lightning-button class="slds-p-around_xx-small" variant="brand" label="Cancel"
+                            onclick={closeModal} title="Cancel"></lightning-button>
+                    </div>
+                </footer>
+
+            </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+    </template>
+
+
+</template>

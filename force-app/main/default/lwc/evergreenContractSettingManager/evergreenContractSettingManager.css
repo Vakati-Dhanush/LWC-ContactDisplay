@@ -1,0 +1,30 @@
+.container
+{
+    display: flex;
+    justify-content: space-between;
+    background-color: #f3f2f2;
+    border: 1px solid #dddbda;
+    border-radius: 0.25rem 0.25rem 0 0;
+}
+
+.listView
+{
+    font-weight: bold;
+    font-size: large;
+    width: 20rem;
+    padding: 0.5rem;
+}
+
+.searchBox
+{
+    width: 20rem;
+    padding: 0.5rem;
+}
+
+.slds-th__action
+{
+    display: flex;
+    height: 2rem;
+    align-items: center;
+    justify-content: center !important; 
+}

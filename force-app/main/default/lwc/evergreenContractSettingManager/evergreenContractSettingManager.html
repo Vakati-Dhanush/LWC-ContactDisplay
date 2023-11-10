@@ -1,0 +1,29 @@
+<template>
+    <lightning-card>
+        <h1 slot="title">{label}</h1>
+        <div slot="actions">
+            <lightning-button variant="neutral" label="New" title="Create new Commission Rate"
+                onclick={handleNew}></lightning-button>
+        </div>
+        <div class="container">
+            <div class="listView">
+                <lightning-combobox name="ListView" label="Plan Year List View" placeholder="Select Plan Year"
+                    value={selectedListView} onchange={handleListViewChange} options={listViewOptions}>
+                </lightning-combobox>
+            </div>
+            <div class="searchBox">
+                <lightning-input type="search" value={searchInput}
+                    placeholder="Search this list for Contract Type or Year" onchange={handleSearch}></lightning-input>
+            </div>
+        </div>
+    </lightning-card>
+    <lightning-datatable hide-checkbox-column sorted-by={sortBy}
+        sorted-direction={sortDirection} onsort={doSorting} data={displayData} columns={columns} key-field="id"
+        onrowaction={handleEdit}>
+    </lightning-datatable>
+
+    <c-evergreen-contract-setting-configurator contract-type-options={contractTypeOptions}
+        plan-year-options={planYearOptions} is-modal-open={isModalOpen} is-edit={isEdit} onclosemodal={handleCloseModal}
+        is-loading={displaySpinner}
+        onnewcommissionsetting={handleNewCustomSetting}></c-evergreen-contract-setting-configurator>
+</template>
