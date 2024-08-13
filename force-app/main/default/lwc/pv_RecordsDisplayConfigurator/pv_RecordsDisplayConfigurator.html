@@ -1,0 +1,10 @@
+<template>
+    <lightning-card variant="Narrow" title={cardTitle} icon-name="standard:dynamic_record_choice">
+        <lightning-button label="Select fields to display" title="selectFields" onclick={handleSelectFields}
+            class="slds-m-left_x-small" slot="actions"></lightning-button>
+        <lightning-datatable key-field="id" show-row-number-column hide-checkbox-column data={sobjectRecords} columns={columns}>
+        </lightning-datatable>
+        <c-pv-_-display-fields-configurator  selected-sobject={selectSobject}  sobject-fields-map={sobjectFieldsMap} selected-fields={existingFields}
+        onselectedfieldsreturned={handleFieldsChange} ></c-pv-_-display-fields-configurator>
+    </lightning-card>
+</template>
